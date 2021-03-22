@@ -51,13 +51,7 @@ export class Register extends Component {
     };
   }
 
-  // setDataToAsyncStorage(){
-  //   registered_data={firstName:this.state.firstName,lastName:this.state.lastName,
-  //     email:this.state.email,mobileNo:this.state.mobileNo,password:this.state.password};
-  //   AsyncStorage.setItem('registered_data',JSON.stringify(registered_data))
-  //   alert('Registered Successfully!',registered_data)
-  //   this.props.navigation.navigate('SignIn');
-  // }
+ 
 
   handleEventsBaar = () => {
     if (
