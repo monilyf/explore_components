@@ -47,7 +47,7 @@ export class Detailed extends Component {
 
     return (
       <View style={styles.container}>
-
+        <Text style={styles.header}>Details</Text>
 
         <Text>First Name:   <Text>{this.state.firstName} </Text></Text>
         <Text><Text>{this.state.lastName} </Text></Text>
