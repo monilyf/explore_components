@@ -28,7 +28,8 @@ export class Register extends Component {
     this.state = {
       firstName: '',
       lastName: '',
-
+      toggleIcon: 'eye',
+      isSecurePassword:true,
       isFnNamevalidate: '',
       isLnNamevalidate: '',
       nameError: '',
@@ -51,7 +52,9 @@ export class Register extends Component {
     };
   }
 
- 
+  handleToggle = () => {
+    this.state.isSecurePassword ? this.setState({ isSecurePassword: false,toggleIcon: 'eye-closed'  }) : this.setState({isSecurePassword: true,toggleIcon: 'eye' });
+};
 
   handleEventsBaar = () => {
     if (
@@ -362,8 +365,9 @@ export class Register extends Component {
                   errorIcon={this.state.errorIcon}
                   // value={this.state.password}
                   placeholder="Enter Password"
+                  extraIconName={this.state.toggleIcon}
                   onToggle={this.handleToggle}
-                  secureText="true"
+                  secureText={this.state.isSecurePassword}
                   onChangeText={(text) =>
                     this.setState({
                       password: text,
@@ -381,6 +385,7 @@ export class Register extends Component {
                 )}
                 <InputContainer
                   iconName="lock"
+                  
                   errorIcon={this.state.errorIcon}
                   // value={this.state.cpassword}
                   placeholder="Confirm Password"
