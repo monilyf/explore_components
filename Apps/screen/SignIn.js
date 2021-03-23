@@ -19,16 +19,7 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import SubmitButton from '../Components/SubmitButton';
 export class SignIn extends Component {
-  // handleToggle = () => {
-  //     const { isPasswordVisible } = this.state;
-  //     if (isPasswordVisible) {
-  //         this.setState({ isPasswordVisible: false });
-  //         this.setState({ toggleIcon: 'eye-closed' });
-  //     } else {
-  //         this.setState({ isPasswordVisible: true });
-  //         this.setState({ toggleIcon: 'eye' });
-  //     }
-  // };
+ 
 
   constructor(props) {
     super(props);
@@ -38,8 +29,8 @@ export class SignIn extends Component {
 
       password: '',
 
-      extraIconName: 'eye',
-      // isPasswordvisible
+      toggleIcon: 'eye',
+      isSecurePassword:true
     };
   }
   check_IsNull = () => {
@@ -58,8 +49,10 @@ export class SignIn extends Component {
     return true;
   };
 
+  handleToggle = () => {
+        this.state.isSecurePassword ? this.setState({ isSecurePassword: false,toggleIcon: 'eye-closed'  }) : this.setState({isSecurePassword: true,toggleIcon: 'eye' });
+  };
   render(props) {
-    // console.log('Naam', this.state.fname);
 
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -77,13 +70,7 @@ export class SignIn extends Component {
 
               <View
                 style={{flex: 1, marginTop: 50, marginHorizontal: 20, flex: 1}}>
-                {/* <InputContainer
-                iconName='person'
-                placeholder="naam"
-                
-                onEndEditing={(text)=>this.setname(text)}
-                // value={this.state.fname}
-              /> */}
+              
                 <InputContainer
                   iconName="email"
                   placeholder="Enter Email"
@@ -98,10 +85,11 @@ export class SignIn extends Component {
                 )}
                 <InputContainer
                   iconName="lock"
+                  secureText={this.state.isSecurePassword}
                   placeholder="Enter Password"
-                  extraIconName={this.state.extraIconName}
+                  extraIconName={this.state.toggleIcon}
                   onChangeText={(text) => this.setState({password: text})}
-                  onToggle={this.handleToggle}
+                  onToggle={()=>this.handleToggle()}
                 />
                 {this.state.isPasswordvalidate ? (
                   <Text style={(styles.errorMsg, {color: 'green'})}>
@@ -116,13 +104,14 @@ export class SignIn extends Component {
                   onPress={() => {
                     this.check_IsNull();
                   }}
+                  buttonText="Login"
                 />
 
                 <View style={styles.footer}>
                   <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('Register')}>
                     <Text style={styles.footerText}>
-                      Haven't Registered Yet! Register
+                      Haven't Registered Yet!{' '} <Text style={{fontWeight:'bold'}}>Register</Text>
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -133,57 +122,7 @@ export class SignIn extends Component {
       </ScrollView>
     );
   }
-  handleToggle = () => {};
-  setname = (text) => {
-    this.setState({
-      fname: text,
-    });
-    // console.log()
-  };
-  validateEmail = (text) => {
-    console.log(text);
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if (reg.test(text) === false) {
-      console.log('Email is Not Correct');
-      this.setState({
-        email: text,
-        emailError: 'Email Must be In proper format',
-        isEmailvalidate: false,
-      });
-      // console.log('Email is not Correct',this.state.email,'---',text);
-      return false;
-    } else {
-      console.log('text==', text);
-      this.setState({
-        email: text,
-        emailError: 'valid Email',
-        isEmailvalidate: true,
-      });
-      console.log('Email is Correct', this.state.email, '---', text);
-    }
-  };
-  validatePassword = (text) => {
-    console.log(text);
-    let reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,15}$/;
-    if (reg.test(text) === false) {
-      console.log('Password Not Valid');
-      this.setState({
-        password: text,
-        passwordError:
-          'Minimum eight & maximum 15 characters, at least one letter, one number and one special character required',
-        isPasswordvalidate: false,
-      });
-      return false;
-    } else {
-      console.log('text==', text);
-      this.setState({
-        password: text,
-        passwordError: 'Valid Password',
-        isPasswordvalidate: true,
-      });
-      console.log('Password is Correct', this.state.password, '---', text);
-    }
-  };
+ 
 }
 
 export default SignIn;

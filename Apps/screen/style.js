@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         marginLeft:23
     },
     footer:{
-        marginTop:30,
+        marginTop:20,
         marginBottom:20
     },
     footerText:{

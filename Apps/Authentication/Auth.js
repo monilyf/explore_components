@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Text, View } from 'react-native';
+import { Alert, Image, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -9,30 +9,27 @@ export class Auth extends Component {
         this.state={
           email:'',
           password:'',
+          // error:
           isAuthenticated:false
         }
       }
       
     componentDidMount(){
       const {email, password} = this.props.route.params;
-
-       
-
-     var login_data={email:'mansip@gmail.com',password:'mansip123'};
-      AsyncStorage.setItem('user',JSON.stringify(login_data))
-    this.setState({email: email, password: password});
-
-      
-
+      this.setState({email: email, password: password});
  
-    this.checkAuthentication();
-    }
+      // var login_data={email:'mansip@gmail.com',password:'mansip123'};
+      // AsyncStorage.setItem('user',JSON.stringify(login_data))
 
+      // this.setAuthentication();
+      this.checkAuthentication();
+    }
+   
     checkAuthentication = async () => {
      
 
         try {
-            let user = await AsyncStorage.getItem('user');
+            let user = await AsyncStorage.getItem('registered_data');
             let parsed = JSON.parse(user);
         
       
@@ -40,16 +37,17 @@ export class Auth extends Component {
               parsed.email === this.state.email &&
               parsed.password === this.state.password
             )
+            // this.state.isAuthenticated=true;
               this.props.navigation.replace('Home');
             else {
              Alert.alert('Email or Password not valid')
               this.props.navigation.navigate('SignIn');
             }
           } catch (error) {
+            alert("You don't have account!");
+            this.props.navigation.navigate('SignIn');
 
-
-            
-            alert(error);
+            // 
           }
 
     }
@@ -59,8 +57,8 @@ export class Auth extends Component {
         console.log("email render",this.state.email,"---",this.state.password)
 
         return (
-            <View>
-              
+            <View style={{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#fff'}}>
+              {/* <Image source={require('../assets/images/error.jpg')}/> */}
             </View>
         )
     }

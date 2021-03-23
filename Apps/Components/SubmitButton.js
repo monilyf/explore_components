@@ -16,7 +16,7 @@ export class SubmitButton extends Component {
      
   
           <Text style={{color: '#fff', fontWeight: 'bold', fontSize: 18}}>
-            SignUp
+            {this.props.buttonText}
           </Text>
   
         </LinearGradient>
@@ -37,6 +37,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: 10,
       },
 });

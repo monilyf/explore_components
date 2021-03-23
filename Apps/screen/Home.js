@@ -16,29 +16,30 @@ const DATA = [
   {
     id: '1',
     title: 'C',
-    year: '',
-    logo: require('../assets/images/user1.png'),
+    primaryText:'',
+
+    logo: require('../assets/images/c.png'),
   },
   {
     id: '2',
     title: 'C++',
-    logo: require('../assets/images/user1.png'),
+    logo: require('../assets/images/c++.png'),
   },
   {
     id: '3',
     title: 'Java',
-    logo: require('../assets/images/user1.png'),
+    logo: require('../assets/images/java.png'),
   },
   {
     id: '4',
     title: 'JavaScript',
-    logo: require('../assets/images/user1.png'),
+    logo: require('../assets/images/js.png'),
   },
-  {
-    id: '5',
-    title: 'Python',
-    logo: require('../assets/images/user1.png'),
-  },
+  // {
+  //   id: '5',
+  //   title: 'Python',
+  //   logo: require('../assets/images/user1.png'),
+  // },
 ];
 
 const Item = ({item, onPress, style}) => (
@@ -46,6 +47,7 @@ const Item = ({item, onPress, style}) => (
     <View style={styles.detailList}>
       <Image source={item.logo} style={styles.imgStyle} />
       <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.primaryText}>{item.primaryText}</Text>
       <Icon name="chevron-right" size={40} style={styles.rightIcon} />
     </View>
   </TouchableOpacity>
@@ -60,9 +62,12 @@ export class Home extends React.Component {
     };
   }
 
+
+
   render(props) {
     return (
       <SafeAreaView style={styles.container}>
+      
         <FlatList
           data={DATA}
           renderItem={({item}) => (
@@ -88,32 +93,32 @@ const styles = StyleSheet.create({
   item: {
     padding: 20,
     marginVertical: 8,
-    // borderWidth:1,
-    borderColor: '#00587a',
+    borderRadius:7,
+    borderColor: '#edffec',
     marginHorizontal: 16,
-    shadowColor: '#000',
+    shadowColor: "red",
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
+    
     elevation: 5,
   },
   title: {
-    fontSize: 32,
+    fontSize: 20,
     marginLeft: 30,
-    marginTop: 20,
+    // marginTop: 20,
   },
   detailList: {
     flexDirection: 'row',
   },
   imgStyle: {
-    height: 80,
-    width: 80,
+    height: 50,
+    width: 50,
   },
-  rightIcon: {marginTop: 23, position: 'absolute', right: 0},
+  rightIcon: {marginTop: 8, position: 'absolute', right: 0},
 });
 
 export default Home;

@@ -16,12 +16,12 @@ const InputContainer=(props)=>{
               size={20}
               style={styles.inputIcon}
             />
-            <TextInput placeholder={props.placeholder} style={styles.input} value={props.value} onEndEditing={props.onEndEditing} maxLength={props.maxLength} onChangeText={props.onChangeText} secureTextEntry={Boolean(props.secureText)}/>
+            <TextInput placeholder={props.placeholder} style={styles.input} value={props.value} onEndEditing={props.onEndEditing} maxLength={props.maxLength} onChangeText={props.onChangeText} secureTextEntry={Boolean(props.secureText)} keyboardType={props.keyboardType}/>
             <TouchableOpacity onPress={props.onToggle}>
             <IconError
               name={props.errorIcon}//"person-outline"
               color='#000'
-              size={20}
+              size={20}s
               style={styles.errorIcon}
             />
             </TouchableOpacity>

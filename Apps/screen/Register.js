@@ -26,8 +26,8 @@ export class Register extends Component {
     super(props);
 
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
 
       isFnNamevalidate: '',
       isLnNamevalidate: '',
@@ -328,6 +328,7 @@ export class Register extends Component {
                 <InputContainer
                   iconName="phone"
                   errorIcon={this.state.errorIcon}
+                  keyboardType='numeric'
                   placeholder="Enter Mobile No."
                   // value={this.state.phone}
                   maxLength={10}
@@ -399,14 +400,14 @@ export class Register extends Component {
                     {this.state.cpasswordError}
                   </Text>
                 )}
-                <SubmitButton onPress={this.handleEventsBaar} />
+                <SubmitButton onPress={this.handleEventsBaar} buttonText="SignUp" />
                 {/* <SubmitButton /> */}
 
                 <View style={styles.footer}>
                   <TouchableOpacity
                     onPress={() => this.props.navigation.navigate('SignIn')}>
                     <Text style={styles.footerText}>
-                      Already Registered! Login
+                      Already Registered! {' '}<Text style={{fontWeight:'bold'}}>Login</Text>
                     </Text>
                   </TouchableOpacity>
                 </View>
